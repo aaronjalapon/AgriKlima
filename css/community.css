@@ -1,0 +1,10 @@
+.community-feed {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-form {
+    margin-bottom: 2rem;
+}
+
+/* // ...existing post-related styles from styles.css... */

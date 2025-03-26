@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction - AgriKlima</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/prediction.css">
+</head>
+<body>
+    <header>
+        <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="prediction.html">Price Prediction</a></li>
+                <li><a href="weather.html">Weather Suggestions</a></li>
+                <li><a href="barter.html">Barter Exchange</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="main-section">
+            <h2>Price Prediction</h2>
+            <form id="prediction-form" class="prediction-form">
+                <div class="input-group">
+                    <label for="prediction-crop">Select Crop</label>
+                    <select id="prediction-crop" required>
+                        <option value="">Select crop</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Enter location" required>
+                </div>
+                <div class="info-text">
+                    <p>Our AI will automatically consider seasonal factors for accurate predictions</p>
+                </div>
+                <div class="input-group">
+                    <button type="submit" id="predict-btn">Predict Price</button>
+                </div>
+            </form>
+            
+            <div class="results-container" data-state="initial">
+                <h3>Prediction Results</h3>
+                <div id="loading" class="loading-spinner hidden" data-component="loader">
+                    <div class="spinner"></div>
+                    <p>Calculating prediction...</p>
+                </div>
+                <div id="prediction-result" class="result-box" data-component="result">
+                    <div class="initial-state">
+                        <p class="placeholder-text">Enter crop and location details above to see prediction results</p>
+                    </div>
+                    <div class="success-state hidden">
+                        <div class="prediction-details">
+                            <h4>Predicted Price Range</h4>
+                            <p class="price-range" data-content="price-range"></p>
+                            <p class="confidence-level" data-content="confidence"></p>
+                        </div>
+                    </div>
+                    <div class="error-state hidden">
+                        <p class="error-message" data-content="error"></p>
+                    </div>
+                </div>
+                <div id="price-chart" class="chart-container" data-component="chart">
+                    <div class="initial-state">
+                        <p class="placeholder-text">Historical price trend will appear here</p>
+                    </div>
+                    <div class="chart-content hidden">
+                        <!-- Chart will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../data.js"></script>
+    <script src="../js/mockData.js"></script>
+    <script src="../js/prediction.js"></script>
+    <script src="../js/ai-model.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

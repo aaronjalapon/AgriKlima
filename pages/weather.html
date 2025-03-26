@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Suggestions - AgriKlima</title>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/weather.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="prediction.html">Price Prediction</a></li>
+                <li><a href="weather.html">Weather Suggestions</a></li>
+                <li><a href="barter.html">Barter Exchange</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="main-section">
+            <h2>Weather-Based Agricultural Suggestions</h2>
+            <div class="input-group">
+                <button onclick="getWeatherSuggestions()">Get Weather Recommendations</button>
+            </div>
+            <div id="weather-result" class="result-box">
+                <div id="weather-alert" class="alert-box"></div>
+                <div class="suggestions-container">
+                    <div id="action-items" class="action-section">
+                        <h3>Required Actions</h3>
+                        <ul id="weather-actions"></ul>
+                    </div>
+                    <div id="crop-suggestions" class="suggestion-section">
+                        <h3>Recommended Crops</h3>
+                    </div>
+                    <div id="preparation-suggestions" class="suggestion-section">
+                        <h3>Preparation Steps</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../data.js"></script>
+    <script src="../js/weather.js"></script>
+    <script src="../js/ai-model.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

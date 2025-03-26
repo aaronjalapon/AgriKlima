@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriKlima</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="pages/dashboard.html">Dashboard</a></li>
+                <li><a href="pages/prediction.html">Price Prediction</a></li>
+                <li><a href="pages/weather.html">Weather Suggestions</a></li>
+                <li><a href="pages/barter.html">Barter Exchange</a></li>
+                <li><a href="pages/community.html">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="loading-overlay" style="display: none;">
+        <div class="loading"></div>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Empower Your Farming Journey</h2>
+                <p>Make data-driven decisions with our advanced agricultural tools and supportive farming community</p>
+                <a href="pages/dashboard.html" class="cta-button">Get Started</a>
+            </div>
+        </section>
+
+        <section class="features-section main-section">
+            <h2>Why Choose AgriKlima?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Smart Price Predictions</h3>
+                    <p>Make informed decisions with our AI-powered crop price forecasting</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌤️</div>
+                    <h3>Weather Insights</h3>
+                    <p>Get personalized crop suggestions based on local weather conditions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Barter Exchange</h3>
+                    <p>Trade crops and equipment with fellow farmers in your area</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Support</h3>
+                    <p>Connect with experienced farmers and share knowledge</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section main-section">
+            <h2>Ready to Transform Your Farming?</h2>
+            <p>Join thousands of farmers already using AgriKlima</p>
+            <div class="cta-buttons">
+                <a href="pages/dashboard.html" class="cta-button">Start Now</a>
+                <a href="pages/community.html" class="cta-button secondary">Join Community</a>
+            </div>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

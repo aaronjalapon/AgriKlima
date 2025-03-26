@@ -1,0 +1,30 @@
+:root {
+    --primary-color: #1b5e20;
+    --secondary-color: #43a047;
+    --background-color: #f8f9fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --error-color: #ff3860;
+    --success-color: #23d160;
+}
+
+/* Copy relevant base styles from styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: #2c3e50;
+}
+
+/* Copy header, nav, button, input, and other common styles from styles.css */
+/* // ...existing header styles from styles.css...
+// ...existing nav styles from styles.css...
+// ...existing button styles from styles.css...
+// ...existing input styles from styles.css... */

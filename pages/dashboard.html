@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AgriKlima</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+</head>
+<body>
+    <header>
+        <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="prediction.html">Price Prediction</a></li>
+                <li><a href="weather.html">Weather Suggestions</a></li>
+                <li><a href="barter.html">Barter Exchange</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard" class="main-section">
+            <h2>Farmer Dashboard</h2>
+            <div class="input-group">
+                <input type="text" id="farmer-location" placeholder="Your Location">
+                <select id="crop-select">
+                    <option value="">Select your crop</option>
+                    <option value="rice">Rice</option>
+                    <option value="corn">Corn</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="sugarcane">Sugarcane</option>
+                    <option value="coconut">Coconut</option>
+                    <option value="banana">Banana</option>
+                    <option value="mango">Mango</option>
+                </select>
+                <button onclick="updateDashboard()">Update</button>
+            </div>
+            <div id="dashboard-content" class="dashboard-grid">
+                <div class="weather-info panel" data-panel="weather">
+                    <h3>Weather Information</h3>
+                    <div id="current-weather">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div id="weather-forecast">
+                        <h4>5-Day Forecast</h4>
+                        <div class="forecast-items"></div>
+                    </div>
+                </div>
+                <div class="crop-recommendations panel" data-panel="recommendations">
+                    <h3>Crop Recommendations</h3>
+                    <div id="crop-advice">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="farm-stats panel" data-panel="stats">
+                    <h3>Farm Statistics</h3>
+                    <div id="yield-tracker">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div id="resource-usage">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="market-prices panel">
+                    <h3>Market Prices</h3>
+                    <div id="price-trends">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+                <div class="weather-alerts panel" data-panel="alerts">
+                    <h3>Weather Alerts</h3>
+                    <div id="alerts-feed">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../data.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/ai-model.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
