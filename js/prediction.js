@@ -56,13 +56,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function showPredictionResults(prediction) {
         hideAllStates();
         const successState = predictionResult.querySelector('.success-state');
-        successState.classList.remove('hidden'); // Ensure success state is visible
+        successState.classList.remove('hidden');
         
         const priceRange = successState.querySelector('[data-content="price-range"]');
         const confidence = successState.querySelector('[data-content="confidence"]');
         
-        priceRange.textContent = `₱${prediction.minPrice} - ₱${prediction.maxPrice} per kg`;
-        confidence.textContent = `Confidence Level: ${prediction.confidence}%`;
+        priceRange.textContent = prediction.priceRange;
+        confidence.textContent = prediction.confidence;
+
+        // Update chart with historical prices
+        if (prediction.historicalPrices) {
+            const chartData = {
+                dates: prediction.historicalPrices.map(item => item.month),
+                prices: prediction.historicalPrices.map(item => item.price)
+            };
+            renderPriceChart(chartData);
+        }
     }
 
     function showError(message) {
@@ -105,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: true,
@@ -122,34 +132,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         title: {
                             display: true,
                             text: 'Price'
-                        }
+                        },
+                        beginAtZero: true
                     }
                 }
             }
         });
     }
 
-    // Example usage: Call renderPriceChart with mock data
-    document.getElementById('predict-btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        const mockData = {
-            dates: ['2023-01', '2023-02', '2023-03', '2023-04'],
-            prices: [100, 120, 110, 130]
-        };
-        renderPriceChart(mockData);
-    });
-
     async function mockPredictPrice(crop, location) {
         if (!crop || !location) {
             throw new Error('Please provide both crop and location.');
         }
 
+        // Simulate API delay
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
+        // Get data from mockPredictionData
+        const cropData = mockPredictionData[crop.toLowerCase()];
+        if (!cropData) {
+            throw new Error('Invalid crop selection');
+        }
+
         return {
-            minPrice: 45,
-            maxPrice: 52,
-            confidence: 85
+            priceRange: cropData.priceRange,
+            confidence: cropData.confidence,
+            historicalPrices: cropData.historicalPrices
         };
     }
 });

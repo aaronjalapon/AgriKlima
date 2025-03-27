@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .nav-menu.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <nav>
+        <nav class="nav-menu">
             <ul>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="prediction.html">Price Prediction</a></li>
@@ -24,16 +33,56 @@
     </header>
 
     <main>
-        <section class="main-section">
-            <h2>Farmer Community</h2>
-            <div class="community-feed">
-                <div class="post-form">
-                    <textarea id="post-content" placeholder="Share your farming tips or ask questions..."></textarea>
-                    <button onclick="createPost()">Post</button>
+        <div class="community-layout">
+            <aside class="community-sidebar">
+                <div class="search-container">
+                    <input type="text" id="post-search" placeholder="Search posts...">
+                    <i class="fas fa-search"></i>
                 </div>
-                <div id="community-posts" class="posts-container"></div>
-            </div>
-        </section>
+                <div class="category-filters">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#" data-category="all">All Posts</a></li>
+                        <li><a href="#" data-category="tips">Farming Tips</a></li>
+                        <li><a href="#" data-category="questions">Questions</a></li>
+                        <li><a href="#" data-category="market">Market Updates</a></li>
+                        <li><a href="#" data-category="events">Events</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="main-section">
+                <h2>Farmer Community</h2>
+                <div class="community-feed">
+                    <div class="post-form">
+                        <select id="post-category">
+                            <option value="">Select Category</option>
+                            <option value="tips">Farming Tips</option>
+                            <option value="questions">Questions</option>
+                            <option value="market">Market Updates</option>
+                            <option value="events">Events</option>
+                        </select>
+                        <textarea id="post-content" placeholder="Share your farming tips or ask questions..."></textarea>
+                        <div class="post-form-actions">
+                            <input type="file" id="post-image" accept="image/*">
+                            <input type="text" id="post-tags" placeholder="Add tags (comma-separated)">
+                            <button onclick="createPost()">Post</button>
+                        </div>
+                    </div>
+                    <div id="community-posts" class="posts-container"></div>
+                </div>
+            </section>
+
+            <aside class="community-guidelines">
+                <h3>Community Guidelines</h3>
+                <ul>
+                    <li>Be respectful and supportive</li>
+                    <li>Share accurate information</li>
+                    <li>Use appropriate categories</li>
+                    <li>Add relevant tags to posts</li>
+                </ul>
+            </aside>
+        </div>
     </main>
 
     <script src="../data.js"></script>

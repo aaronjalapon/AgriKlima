@@ -5,6 +5,160 @@
 
 .post-form {
     margin-bottom: 2rem;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* // ...existing post-related styles from styles.css... */
+.post-form select, .post-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.post-form-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.posts-container {
+    margin-top: 20px;
+}
+
+.community-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: 20px;
+    padding: 20px;
+}
+
+.community-sidebar, .community-guidelines {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.category-filters ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-filters li a {
+    display: block;
+    padding: 8px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.category-filters li a:hover {
+    background: #e0e0e0;
+}
+
+@media (max-width: 1024px) {
+    .community-layout {
+        grid-template-columns: 200px 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+    .community-guidelines {
+        display: none;
+    }
+    .post-form {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .community-layout {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .community-sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        bottom: 0;
+        width: 250px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        background: white;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .community-sidebar.active {
+        left: 0;
+    }
+    .post-form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .post-form-actions input,
+    .post-form-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .post-form textarea {
+        min-height: 100px;
+    }
+    .main-section {
+        padding: 10px;
+    }
+    .main-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    #post-search {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .post-form {
+        padding: 10px;
+        margin-bottom: 1rem;
+    }
+    .category-filters li a {
+        padding: 12px 8px; /* Larger touch targets */
+    }
+    .search-container input {
+        padding: 12px 30px 12px 10px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) {
+    .category-filters li a {
+        padding: 12px 8px;
+    }
+    .post-form button {
+        min-height: 44px;
+    }
+    input, select, textarea {
+        font-size: 16px;
+    }
+}

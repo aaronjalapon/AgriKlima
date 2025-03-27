@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/weather.css">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .hidden {
             display: none;
@@ -36,10 +37,21 @@
             <h2>Weather-Based Agricultural Suggestions</h2>
             <div class="weather-container">
                 <div class="location-input">
-                    <input type="text" id="location" placeholder="Enter your location">
-                    <button onclick="getWeatherSuggestions()">Get Weather Info</button>
+                    <input type="text" id="location" data-weather-input placeholder="Enter your location">
+                    <button data-weather-search class="search-btn">Get Weather Info</button>
+                    <button data-weather-refresh class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
                 </div>
                 
+                <div class="forecast-controls">
+                    <select id="forecast-period" onchange="handleForecastChange(this.value)">
+                        <option value="daily">Daily Forecast</option>
+                        <option value="weekly">Weekly Forecast</option>
+                        <option value="monthly">Monthly Forecast</option>
+                    </select>
+                </div>
+
                 <div id="loading" class="loading-spinner hidden">
                     <div class="spinner"></div>
                     <p>Loading weather data...</p>
@@ -51,6 +63,7 @@
                         <span id="location-display"></span>
                     </div>
                     <div class="weather-details">
+                        <div id="weather-icon" class="weather-icon"></div>
                         <div id="temperature"></div>
                         <div id="humidity"></div>
                         <div id="wind-speed"></div>
@@ -58,7 +71,23 @@
                 </div>
 
                 <div id="forecast" class="forecast-container">
-                    <!-- Forecast cards will be inserted here -->
+                    <div id="daily-forecast" class="forecast-section">
+                        <h3>Daily Forecast</h3>
+                        <div class="forecast-grid"></div>
+                    </div>
+                    <div id="weekly-forecast" class="forecast-section">
+                        <h3>Weekly Forecast</h3>
+                        <div class="forecast-grid"></div>
+                    </div>
+                    <div id="monthly-forecast" class="forecast-section">
+                        <h3>Monthly Forecast</h3>
+                        <div class="forecast-grid"></div>
+                    </div>
+                </div>
+
+                <div id="weather-map" class="weather-map-container hidden">
+                    <h3>Weather Map</h3>
+                    <div id="map-canvas"></div>
                 </div>
             </div>
 
@@ -88,17 +117,26 @@
         </section>
     </main>
 
+    <script>
+        function handleForecastChange(period) {
+            // Hide all forecast sections
+            document.querySelectorAll('.forecast-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected forecast section
+            document.getElementById(`${period}-forecast`).style.display = 'block';
+        }
+
+        // Initialize with daily forecast
+        document.addEventListener('DOMContentLoaded', () => {
+            handleForecastChange('daily');
+        });
+    </script>
     <script src="../data.js"></script>
     <script src="../js/mockWeatherData.js"></script>
     <script src="../js/weather.js"></script>
     <script src="../js/ai-model.js"></script>
     <script src="../script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!window.mockWeatherData) {
-                console.error('mockWeatherData is not loaded');
-            }
-        });
-    </script>
 </body>
 </html>

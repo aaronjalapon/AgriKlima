@@ -6,10 +6,10 @@ async function updateDashboard() {
     const location = document.getElementById('farmer-location').value;
     const crop = document.getElementById('crop-select').value;
     
-    if (!location || !crop) {
-        alert('Please enter both location and crop');
-        return;
-    }
+    // if (!location || !crop) {
+    //     alert('Please enter both location and crop');
+    //     return;
+    // }
 
     try {
         await updateWeatherInfo(location);

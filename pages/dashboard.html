@@ -8,12 +8,20 @@
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .nav-menu.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1><img src ="/img/Frame 6.png"><a href="../index.html"> AgriKlima </a></h1>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <nav>
+        <nav class="nav-menu">
             <ul>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="prediction.html">Price Prediction</a></li>

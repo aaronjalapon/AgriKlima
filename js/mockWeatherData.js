@@ -1,92 +1,64 @@
 const mockWeatherData = {
     current: {
         temperature: 28,
-        humidity: 75,
+        humidity: 65,
         windSpeed: 12,
         condition: 'Partly Cloudy',
-        icon: '⛅'
+        icon: '02d'
     },
-    forecast: [
-        {
-            day: 'Today',
-            temperature: 28,
-            humidity: 75,
-            condition: 'Partly Cloudy',
-            icon: '⛅'
-        },
-        {
-            day: 'Tomorrow',
-            temperature: 29,
-            humidity: 70,
-            condition: 'Sunny',
-            icon: '☀️'
-        },
-        {
-            day: 'Wednesday',
-            temperature: 27,
-            humidity: 80,
-            condition: 'Light Rain',
-            icon: '🌧️'
-        },
-        {
-            day: 'Thursday',
-            temperature: 28,
-            humidity: 72,
-            condition: 'Cloudy',
-            icon: '☁️'
-        },
-        {
-            day: 'Friday',
-            temperature: 30,
-            humidity: 68,
-            condition: 'Sunny',
-            icon: '☀️'
-        }
-    ],
-    agriculturalSuggestions: {
-        alerts: [
-            "Moderate rainfall expected - Good conditions for planting",
-            "High humidity levels - Monitor for potential fungal diseases"
-        ],
-        recommendedCrops: [
+    forecast: {
+        daily: [
             {
-                name: "Rice",
-                suitability: "High",
-                icon: "🌾"
+                date: new Date(),
+                temp: { max: 29, min: 22 },
+                humidity: 70,
+                icon: '01d'
             },
             {
-                name: "Corn",
-                suitability: "Medium",
-                icon: "🌽"
+                date: new Date(Date.now() + 86400000),
+                temp: { max: 28, min: 21 },
+                humidity: 75,
+                icon: '02d'
             },
             {
-                name: "Vegetables",
-                suitability: "High",
-                icon: "🥬"
-            },
-            {
-                name: "Sweet Potato",
-                suitability: "Medium",
-                icon: "🥔"
+                date: new Date(Date.now() + 172800000),
+                temp: { max: 27, min: 20 },
+                humidity: 80,
+                icon: '10d'
             }
         ],
-        actions: [
-            "Prepare drainage systems for expected rainfall",
-            "Apply fungicide as preventive measure",
-            "Schedule irrigation for dry periods",
-            "Monitor soil moisture levels"
+        weekly: [
+            { day: 'Monday', temp: 28, humidity: 75, condition: 'Sunny' },
+            { day: 'Tuesday', temp: 27, humidity: 80, condition: 'Partly Cloudy' },
+            { day: 'Wednesday', temp: 29, humidity: 70, condition: 'Clear' },
+            { day: 'Thursday', temp: 26, humidity: 85, condition: 'Rain' },
+            { day: 'Friday', temp: 27, humidity: 78, condition: 'Cloudy' },
+            { day: 'Saturday', temp: 28, humidity: 72, condition: 'Sunny' },
+            { day: 'Sunday', temp: 29, humidity: 70, condition: 'Clear' }
         ],
-        preparationSteps: [
-            "Check and clean irrigation systems",
-            "Prepare soil beds for planting",
-            "Stock up on fungicide supplies",
-            "Set up weather monitoring equipment",
-            "Plan harvest schedule around forecasted rain"
+        monthly: [
+            { week: 1, avgTemp: 28, rainfall: 'Low', forecast: 'Mostly Sunny' },
+            { week: 2, avgTemp: 27, rainfall: 'Moderate', forecast: 'Scattered Showers' },
+            { week: 3, avgTemp: 29, rainfall: 'High', forecast: 'Heavy Rain' },
+            { week: 4, avgTemp: 28, rainfall: 'Low', forecast: 'Clear' }
         ]
     },
-    seasonalAlert: {
-        upcoming: "Rainy Season",
-        message: "Rainy season is approaching. Time to prepare your fields and adjust crop planning.",
-        actionRequired: true
+    suggestions: {
+        actions: [
+            'Water crops in the early morning',
+            'Check soil moisture levels',
+            'Monitor for pests due to humid conditions',
+            'Prepare shade structures for sensitive crops'
+        ],
+        crops: [
+            'Rice',
+            'Corn',
+            'Vegetables',
+            'Root crops'
+        ]
     }
 };
+
+function getMockWeatherData() {
+    return mockWeatherData;
+}
