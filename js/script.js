@@ -151,19 +151,45 @@ function likePost(postId) {
     }
 }
 
-// Initialize crop select options
-window.onload = function() {
-    const cropSelect = document.getElementById('prediction-crop');
-    Object.keys(cropData).forEach(crop => {
-        const option = document.createElement('option');
-        option.value = crop;
-        option.textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
-        cropSelect.appendChild(option);
-    });
+function initializeApp() {
+    // Wait for cropData to be available
+    if (typeof cropData === 'undefined') {
+        console.error('cropData is not defined. Please ensure data.js is loaded before script.js');
+        return;
+    }
 
-    displayBarterListings();
-    displayPosts();
-};
+    // Get the current page's crop select element
+    const cropSelect = document.getElementById('crop-select') || document.getElementById('prediction-crop');
+    
+    if (cropSelect) {
+        // Clear existing options except the first one
+        while (cropSelect.options.length > 1) {
+            cropSelect.remove(1);
+        }
+        
+        // Add crop options
+        Object.keys(cropData).forEach(crop => {
+            const option = document.createElement('option');
+            option.value = crop;
+            option.textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
+            cropSelect.appendChild(option);
+        });
+    }
+
+    // Initialize other components
+    const barterContainer = document.getElementById('barter-listings');
+    if (barterContainer) displayBarterListings();
+    
+    const communityContainer = document.getElementById('community-posts');
+    if (communityContainer) displayPosts();
+}
+
+// Use DOMContentLoaded and a fallback
+document.addEventListener('DOMContentLoaded', initializeApp);
+// Fallback for cases where DOMContentLoaded has already fired
+if (document.readyState === 'complete') {
+    initializeApp();
+}
 
 function toggleMenu() {
     const nav = document.querySelector('nav');

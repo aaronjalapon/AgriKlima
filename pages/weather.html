@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/weather.css">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .nav-menu.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -26,9 +34,34 @@
     <main>
         <section class="main-section">
             <h2>Weather-Based Agricultural Suggestions</h2>
-            <div class="input-group">
-                <button onclick="getWeatherSuggestions()">Get Weather Recommendations</button>
+            <div class="weather-container">
+                <div class="location-input">
+                    <input type="text" id="location" placeholder="Enter your location">
+                    <button onclick="getWeatherSuggestions()">Get Weather Info</button>
+                </div>
+                
+                <div id="loading" class="loading-spinner hidden">
+                    <div class="spinner"></div>
+                    <p>Loading weather data...</p>
+                </div>
+
+                <div id="current-weather" class="weather-info hidden">
+                    <div class="weather-header">
+                        <h3>Current Weather</h3>
+                        <span id="location-display"></span>
+                    </div>
+                    <div class="weather-details">
+                        <div id="temperature"></div>
+                        <div id="humidity"></div>
+                        <div id="wind-speed"></div>
+                    </div>
+                </div>
+
+                <div id="forecast" class="forecast-container">
+                    <!-- Forecast cards will be inserted here -->
+                </div>
             </div>
+
             <div id="weather-result" class="result-box">
                 <div id="weather-alert" class="alert-box"></div>
                 <div class="suggestions-container">
@@ -38,18 +71,34 @@
                     </div>
                     <div id="crop-suggestions" class="suggestion-section">
                         <h3>Recommended Crops</h3>
+                        <div class="crop-grid" id="crop-grid"></div>
                     </div>
                     <div id="preparation-suggestions" class="suggestion-section">
                         <h3>Preparation Steps</h3>
+                        <div class="steps-timeline" id="prep-steps"></div>
                     </div>
+                </div>
+                <!-- New season call to action section -->
+                <div id="season-action" class="season-action hidden">
+                    <h3>Upcoming Season Alert</h3>
+                    <p id="season-message">[Upcoming season details will appear here]</p>
+                    <button onclick="handleSeasonAction()">Take Action</button>
                 </div>
             </div>
         </section>
     </main>
 
     <script src="../data.js"></script>
+    <script src="../js/mockWeatherData.js"></script>
     <script src="../js/weather.js"></script>
     <script src="../js/ai-model.js"></script>
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window.mockWeatherData) {
+                console.error('mockWeatherData is not loaded');
+            }
+        });
+    </script>
 </body>
 </html>

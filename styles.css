@@ -535,6 +535,7 @@ input:focus, select:focus, textarea:focus {
     color: white;
     padding: 0.5rem;
     margin-left: auto;
+    z-index: 1000;
 }
 
 @keyframes ripple {
@@ -552,139 +553,42 @@ input:focus, select:focus, textarea:focus {
     }
 }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
 @media screen and (max-width: 768px) {
     .menu-toggle {
         display: block;
     }
 
     nav {
-        display: none;
-        width: 100%;
+        display: none; /* Changed from transform */
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
         background: var(--primary-color);
         z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     nav.active {
-        display: block;
+        display: block; /* Changed from transform */
     }
 
     nav ul {
+        display: flex !important; /* Force display of ul */
         flex-direction: column;
+        gap: 1.5rem;
         padding: 1rem;
-        margin: 0;
     }
 
     nav ul li {
         width: 100%;
         text-align: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    nav ul li:last-child {
-        border-bottom: none;
-    }
-
-    header {
-        position: relative;
-    }
-}
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 10px;
-}
-
-@media screen and (max-width: 768px) {
-    .menu-toggle {
+    nav a {
         display: block;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    nav.active {
-        display: block;
-    }
-
-    nav ul {
-        flex-direction: column;
-        padding: 0;
-    }
-
-    nav ul li {
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-    }
-
-    .nav-menu {
-        display: none;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: var(--primary-color);
         padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-
-    .nav-menu.active {
-        display: block;
-    }
-
-    .nav-menu ul {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .nav-menu ul li {
         width: 100%;
-        text-align: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-menu ul li:last-child {
-        border-bottom: none;
+        font-size: 1.2rem;
     }
 }

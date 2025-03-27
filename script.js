@@ -86,6 +86,8 @@ function postBarterOffer() {
 
 function displayBarterListings() {
     const container = document.getElementById('barter-listings');
+    if (!container) return; // Exit if container doesn't exist
+    
     container.innerHTML = barterListings.map(listing => `
         <div class="barter-card">
             <h4>Offering: ${listing.has}</h4>
@@ -121,6 +123,8 @@ function createPost() {
 
 function displayPosts() {
     const container = document.getElementById('community-posts');
+    if (!container) return; // Exit if container doesn't exist
+    
     container.innerHTML = communityPosts.map(post => `
         <div class="post-card">
             <div class="post-header">
@@ -135,18 +139,16 @@ function displayPosts() {
     `).join('');
 }
 
-function likePost(postId) {
-    const post = communityPosts.find(p => p.id === postId);
-    if (post) {
-        post.likes++;
-        displayPosts();
-    }
-}
-
 // Mobile Navigation Toggle
 function toggleMenu() {
-    const nav = document.querySelector('.nav-menu');
+    const nav = document.querySelector('nav');
     nav.classList.toggle('active');
+    
+    // Ensure nav links are visible when menu is active
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.style.display = nav.classList.contains('active') ? 'block' : 'none';
+    });
 }
 
 // Loading State Handler
@@ -189,15 +191,30 @@ function clearError(input) {
 }
 
 // Initialize crop select options
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     const cropSelect = document.getElementById('prediction-crop');
-    Object.keys(cropData).forEach(crop => {
-        const option = document.createElement('option');
-        option.value = crop;
-        option.textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
-        cropSelect.appendChild(option);
-    });
+    if (cropSelect) {
+        Object.keys(cropData).forEach(crop => {
+            const option = document.createElement('option');
+            option.value = crop;
+            option.textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
+            cropSelect.appendChild(option);
+        });
+    }
 
-    displayBarterListings();
-    displayPosts();
-};
+    // Only call display functions if we're on the relevant pages
+    if (document.getElementById('barter-listings')) {
+        displayBarterListings();
+    }
+    if (document.getElementById('community-posts')) {
+        displayPosts();
+    }
+
+    // Add event listener for menu toggle
+    const menuButton = document.querySelector('.menu-toggle');
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMenu);
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Toggle navigation menu');
+    }
+});
